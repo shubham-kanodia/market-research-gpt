@@ -1,0 +1,37 @@
+```python
+import tweepy
+
+def search_tweets(search_phrases, hashtags, people, api_key, api_secret, access_token, access_secret, count=100):
+    auth = tweepy.OAuthHandler(api_key, api_secret)
+    auth.set_access_token(access_token, access_secret)
+    api = tweepy.API(auth)
+
+    query = ' OR '.join(search_phrases + hashtags + people)
+    return [status._json for status in tweepy.Cursor(api.search, q=query, count=count, tweet_mode='extended').items()]
+
+if __name__ == '__main__':
+    search_phrases = [
+        'image verification protocol', 'cryptographically signed images', 'attested camera sensor',
+        'metadata tracking image edits', 'genuine image detection', 'AI-generated image verification',
+        'image authentication', 'detect edited images', 'image provenance'
+    ]
+
+    hashtags = [
+        '#imageverification', '#attsensor', '#imageauthentication', '#aiimage', '#metadata', '#trustedcamera',
+        '#imageprovenance', '#imageintegrity'
+    ]
+
+    people = [
+        '@jpegmafia', '@kimkomando', '@neuralips', '@hanyfarid', '@steganographer'
+    ]
+
+    api_key = 'YOUR_API_KEY'
+    api_secret = 'YOUR_API_SECRET'
+    access_token = 'YOUR_ACCESS_TOKEN'
+    access_secret = 'YOUR_ACCESS_SECRET'
+
+    tweets = search_tweets(search_phrases, hashtags, people, api_key, api_secret, access_token, access_secret)
+    for tweet in tweets:
+        print(tweet['full_text'])
+```
+Replace 'YOUR_API_KEY', 'YOUR_API_SECRET', 'YOUR_ACCESS_TOKEN', and 'YOUR_ACCESS_SECRET' with your Twitter API credentials.
