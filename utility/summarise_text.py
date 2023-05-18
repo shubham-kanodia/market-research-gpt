@@ -15,7 +15,7 @@ class SummariseText:
         REMEMBER - Your response should only contain the summarised text.
         """
 
-        self.executor = ModelExecutor(openai, self.context)
+        self.executor = ModelExecutor(openai, self.context, model_name="gpt-3.5-turbo")
 
     def execute(self, task):
         response = self.executor.execute(task)
