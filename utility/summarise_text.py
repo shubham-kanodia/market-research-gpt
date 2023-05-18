@@ -2,7 +2,7 @@ from executors.model import ModelExecutor
 
 
 class SummariseText:
-    def __init__(self, openai, goal):
+    def __init__(self, openai, goal, model_name="gpt-3.5-turbo"):
         self.openai = openai
         self.context = f"""
         You are a summarise content AI. 
@@ -15,9 +15,14 @@ class SummariseText:
         REMEMBER - Your response should only contain the summarised text.
         """
 
-        self.executor = ModelExecutor(openai, self.context, model_name="gpt-3.5-turbo")
+        self.executor = ModelExecutor(openai, self.context, model_name=model_name)
 
     def execute(self, task):
         response = self.executor.execute(task)
+
+        return response.content()
+
+    def execute_all(self, tasks):
+        response = self.executor.execute_all(tasks)
 
         return response.content()
