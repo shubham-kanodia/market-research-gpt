@@ -88,20 +88,33 @@ goal = \
 
 # Step 3 - Summarise data using GPT 3.5
 
-summarised_data = {}
+summarised_data = json.load(open("data/summary/summary.json", "r"))
+
+done_set = set()
+for key in summarised_data:
+    for idx in summarised_data:
+        done_set.add(element=(key, idx))
+
 model = RecursivelySummariseText(openai, goal)
 
 for key in scraped_data:
     for idx, info in enumerate(scraped_data[key]):
+        if (key, idx) in done_set:
+            continue
+
         message = f"Information about {key} - {idx}/{len(scraped_data[key])}\n" + info
         summary = model.summarise(message)
-        summarised_data[key] = summarised_data.get(key, []) + [summary]
 
+        if key in summarised_data:
+            summarised_data[key][idx] = summary
+        else:
+            summarised_data[key] = {idx: summary}
+
+        with open("data/summary/summary.json", "w") as f:
+            json.dump(summarised_data, f)
+
+        print(f"[Completed] Key / Index: {key} / {idx}")
     print(f"[Completed] Key: {key}")
-
-with open("data/summary/summary.json", "w") as f:
-    json.dump(summarised_data, f)
-
 
 # Step 4 - Inference
 

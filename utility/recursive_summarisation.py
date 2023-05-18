@@ -52,8 +52,10 @@ class RecursivelySummariseText:
 
     def summarise(self, text):
         if get_token_count_gpt3_5(text) < 8000:
-            return text
-            # return self._execute(text)
+            return self._execute(text)
+
+        if get_token_count_gpt3_5(text) > 30000:
+            return ""
 
         else:
             chunks = self._split_text(text)
