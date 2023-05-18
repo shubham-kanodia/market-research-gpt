@@ -2,6 +2,37 @@ from executors.model import ModelExecutor
 from utility.processing import get_token_count_gpt3_5
 
 
+class Splitter:
+    def __init__(self, original_text):
+        self.text = original_text
+        self.whitespace_split = original_text.split(" ")
+
+        self.given_chunks = 0
+        self.last_idx = 0
+
+    def get_chunk(self, existing_content=""):
+        if self.last_idx == len(self.whitespace_split):
+            return None
+
+        current_chunk = ""
+        current_token_len = get_token_count_gpt3_5(existing_content)
+
+        for idx, word in enumerate(self.whitespace_split[self.last_idx:]):
+            word_token_len = get_token_count_gpt3_5(word)
+
+            if current_token_len + word_token_len <= 3000:
+                current_chunk += " " + word
+                current_token_len += word_token_len
+            else:
+                self.given_chunks += 1
+                self.last_idx = idx
+
+                return current_chunk
+
+        self.last_idx = len(self.whitespace_split)
+        return current_chunk
+
+
 class RecursivelySummariseText:
     def __init__(self, openai, goal, model_name="gpt-3.5-turbo"):
         self.openai = openai
@@ -51,19 +82,26 @@ class RecursivelySummariseText:
         return chunks
 
     def summarise(self, text):
-        if get_token_count_gpt3_5(text) < 8000:
+
+        if get_token_count_gpt3_5(text) < 3000:
             return self._execute(text)
 
         if get_token_count_gpt3_5(text) > 30000:
             return ""
 
         else:
-            chunks = self._split_text(text)
+            splitter = Splitter(text)
 
             prev_summary = ""
-            for chunk in chunks:
+            for idx in range(10):
+                chunk = splitter.get_chunk(prev_summary)
+
+                if not chunk:
+                    break
+
                 if not prev_summary:
                     message = f"Raw data:\n {chunk}"
+
                 else:
                     message = f"Previously summarised text:\n {prev_summary} \n\n Raw data to add to summary:\n {chunk}"
 

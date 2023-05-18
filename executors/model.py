@@ -2,7 +2,7 @@ from responses.response import Response
 
 
 class ModelExecutor:
-    def __init__(self, openai, system, model_name="gpt-4-32k-0314"):
+    def __init__(self, openai, system, model_name="gpt-4"):
         self.model_name = model_name
         self.system = system
         self.openai = openai
