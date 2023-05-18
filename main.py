@@ -5,6 +5,10 @@ import openai
 from dotenv import load_dotenv
 
 from google.keywords_search import KeywordsSearch
+from scraper.google import GoogleScraper
+
+from pprint import pprint
+
 
 load_dotenv("data/.env")
 
@@ -13,15 +17,21 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Step 1
 
-keyword_search = KeywordsSearch(openai)
-keywords = keyword_search.execute()
+# keyword_search = KeywordsSearch(openai)
+# keywords = keyword_search.execute()
 
-print(keywords)
 # Step 2
 
-# scraper = TwitterScraper(openai)
-#
-# keywords = json.load(open("data/conversations/keywords.json", "r"))
-# search_phrases, hashtags, people = keywords["search_phrases"], keywords["hashtags"], keywords["people"]
-#
-# scraper.scrape(search_phrases, hashtags, people)
+keywords_data = json.load(open("data/conversations/google/keywords.json", "r"))
+
+# Prepare keywords list
+keywords_list = []
+keywords_list.extend(keywords_data["google"]["search_phrases"])
+
+keywords_list.extend(["site:twitter.com " + keywords for keywords in keywords_data["twitter"]["search_phrases"]])
+keywords_list.extend(["site:reddit.com " + keywords for keywords in keywords_data["reddit"]["search_phrases"]])
+keywords_list.extend(["site:news.ycombinator.com " + keywords for keywords in keywords_data["hacker news"]["search_phrases"]])
+
+# Scrape data
+g_scraper = GoogleScraper()
+g_scraper.get_data(keywords_list)
