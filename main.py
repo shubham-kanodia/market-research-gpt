@@ -65,8 +65,9 @@ system = \
     Verification:
     Any user, when given the image can test if the image was taken by a camera and also verify what edits were made on it
 
-    We are going to give you data obtained from different web pages relating to the idea. Your job is to analyse and understand that information to
-    tell us about market fit, our competitors, existing technologies we can leverage and what is going on in this space. The output should be in markdown format.
+    We are going to give you data obtained from different web pages relating to the idea, you can also add other information you have.
+    Your job is to analyse and understand that information to tell us about the problem with examples, possible solutions, competitors,
+    existing technologies and standards, use-cases and trends in this space. The output should be in markdown format.
     """
 
 # goal = \
