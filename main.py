@@ -8,7 +8,7 @@ from steps.step_2 import Step2
 from steps.step_3 import Step3
 from steps.step_4 import Step4
 
-load_dotenv("data/.env")
+load_dotenv(".env")
 
 openai.organization = os.getenv("OPENAI_ORG_ID")
 openai.api_key = os.getenv("OPENAI_API_KEY")
