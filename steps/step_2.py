@@ -28,7 +28,7 @@ class Step2:
         keywords_list.extend(["site:twitter.com " + keywords for keywords in keywords["twitter"]["search_phrases"]])
         keywords_list.extend(["site:reddit.com " + keywords for keywords in keywords["reddit"]["search_phrases"]])
         keywords_list.extend(
-            ["site:news.ycombinator.com " + keywords for keywords in keywords["hacker news"]["search_phrases"]])
+            ["site:news.ycombinator.com " + keywords for keywords in keywords["hacker_news"]["search_phrases"]])
 
         g_scraper = GoogleScraper()
         g_scraper.get_data(keywords_list)

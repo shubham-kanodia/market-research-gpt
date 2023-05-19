@@ -86,7 +86,6 @@ class GoogleScraper:
                     data[keywords] = data.get(keywords, []) + [text]
 
                 except Exception as exp:
-                    print("[Failure] 1 failed extraction")
                     continue
 
                 time.sleep(0.1)

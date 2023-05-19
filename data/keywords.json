@@ -1,0 +1,45 @@
+{
+  "reddit": {
+    "search_phrases": [
+      "camera sensor attestation",
+      "attested camera sensor",
+      "image verification",
+      "metadata image edits",
+      "AI-generated images detection"
+    ],
+    "people": []
+  },
+  "twitter": {
+    "search_phrases": [
+      "camera sensor attestation",
+      "attested #camera sensor",
+      "image verification",
+      "metadata image edits",
+      "AI-generated images detection"
+    ],
+    "people": [
+      "@DeepMind",
+      "@OpenAI",
+      "@GoogleAI",
+      "@photography_ai"
+    ]
+  },
+  "hacker_news": {
+    "search_phrases": [
+      "camera sensor attestation",
+      "attested camera sensor",
+      "image verification",
+      "metadata image edits",
+      "AI-generated images detection"
+    ]
+  },
+  "google": {
+    "search_phrases": [
+      "camera sensor attestation",
+      "attested camera sensor technology",
+      "image verification techniques",
+      "metadata tracking image edits",
+      "detecting AI-generated images"
+    ]
+  }
+}

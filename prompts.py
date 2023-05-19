@@ -1,6 +1,6 @@
 import json
 
-IDEA = json.load(open("config.json", "r"))
+IDEA = json.load(open("config.json", "r"))["idea"]
 
 KEYWORD_SEARCH_CONTEXT = """
 You are a market research AI. For each idea you need to suggest what to search 
