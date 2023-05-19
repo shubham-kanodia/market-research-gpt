@@ -48,7 +48,7 @@ class ModelExecutor:
         self.messages.append({"role": "assistant", "content": response_content})
         return wrapped_response
 
-    def execute_without_memory(self, message):
+    def _execute_without_memory(self, message):
         messages = self.messages + [{"role": "user", "content": message}]
 
         resp = self.openai.ChatCompletion.create(
@@ -58,3 +58,11 @@ class ModelExecutor:
 
         wrapped_response = Response(resp)
         return wrapped_response
+
+    def execute_without_memory(self, message):
+        for retry in range(1, self.retries + 1):
+            try:
+                return self._execute_without_memory(message)
+
+            except RateLimitError as rle:
+                print(f"[Retrying..] {retry} / {self.retries}")
