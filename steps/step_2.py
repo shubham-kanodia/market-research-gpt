@@ -31,7 +31,7 @@ class Step2:
             ["site:news.ycombinator.com " + keywords for keywords in keywords["hacker_news"]["search_phrases"]])
 
         g_scraper = GoogleScraper()
-        g_scraper.get_data(keywords_list)
+        scraped_data = g_scraper.get_data(keywords_list)
 
         for key in scraped_data.keys():
             scraped_data[key] = [process_info(info) for info in scraped_data[key]]

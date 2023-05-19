@@ -91,3 +91,4 @@ class GoogleScraper:
                 time.sleep(0.1)
 
             print("Completed 1 keyword")
+        return data
