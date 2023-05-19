@@ -1,0 +1,3 @@
+{
+  "idea": "We are trying to develop a protocol which does the following to help people distinguish if an image is genuine or ai generated\n\nTracking if the image was algorithmically generated or taken by user on a camera:\nFor this an attested camera sensor is used which cryptographically signs an image to prove that the image was indeed taken from a camera\n\nTracking the edits on the image:\nFor this we will track every edit made on the image and save it in the metadata.\n\nVerification:\nAny user, when given the image can test if the image was taken by a camera and also verify what edits were made on it"
+}
