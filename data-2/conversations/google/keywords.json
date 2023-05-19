@@ -1,0 +1,45 @@
+{
+  "reddit": {
+    "search_phrases": [
+      "real vs ai-generated images",
+      "image authentication",
+      "camera sensor attestation",
+      "image metadata editing tracking",
+      "image verification techniques"
+    ],
+    "people": []
+  },
+  "hacker news": {
+    "search_phrases": [
+      "algorithmically generated images",
+      "attested camera sensor",
+      "cryptographically signed image",
+      "image editing metadata tracking",
+      "image verification"
+    ]
+  },
+  "twitter": {
+    "search_phrases": [
+      "real vs AI generated images",
+      "image authentication",
+      "camera sensor attestation",
+      "image editing metadata",
+      "image verification"
+    ],
+    "people": [
+      "@deepart_ai",
+      "@NvidiaAI",
+      "@OpenAI",
+      "@googleai"
+    ]
+  },
+  "google": {
+    "search_phrases": [
+      "image authenticity detection",
+      "cryptographic image signing",
+      "camera sensor attestation technology",
+      "image metadata tracking",
+      "real vs AI generated image analysis"
+    ]
+  }
+}

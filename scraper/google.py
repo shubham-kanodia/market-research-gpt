@@ -92,6 +92,3 @@ class GoogleScraper:
                 time.sleep(0.1)
 
             print("Completed 1 keyword")
-
-        with open(f"data/scraped_data/all_scraped_data.json", "w") as f:
-            json.dump(data, f, indent=2)
