@@ -25,7 +25,7 @@ class Step2:
         keywords_list = []
         keywords_list.extend(keywords["google"]["search_phrases"])
 
-        keywords_list.extend(["site:twitter.com " + keywords for keywords in keywords["twitter"]["search_phrases"]])
+        # keywords_list.extend(["site:twitter.com " + keywords for keywords in keywords["twitter"]["search_phrases"]])
         keywords_list.extend(["site:reddit.com " + keywords for keywords in keywords["reddit"]["search_phrases"]])
         keywords_list.extend(
             ["site:news.ycombinator.com " + keywords for keywords in keywords["hacker_news"]["search_phrases"]])
@@ -38,3 +38,5 @@ class Step2:
 
         with open(self.output_file_path, "w") as f:
             json.dump(scraped_data, f, indent=2)
+
+        return scraped_data

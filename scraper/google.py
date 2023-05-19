@@ -25,6 +25,8 @@ class GoogleScraper:
 
         if "google" in domain:
             link = ""
+        if link.endswith(".pdf"):
+            link = ""
         return link
 
     @staticmethod
